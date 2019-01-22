@@ -48,6 +48,16 @@ if ( ! function_exists( 'mywordpress_setup' ) ) :
 			'menu-2' => esc_html__( 'Button', 'mywordpress' ),
 		) );
 
+
+// 		add_filter('nav_menu_css_class' , 'special_nav_class' , 10 , 2);
+//
+// function special_nav_class ($classes, $item) {
+//     if (in_array('current-menu-item', $classes) ){
+//         $classes[] = 'active ';
+//     }
+//     return $classes;
+// }
+
 		/*
 		 * Switch default core markup for search form, comment form, and comments
 		 * to output valid HTML5.
@@ -160,3 +170,14 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+require_once (dirname(__FILE__) . '/theme-config.php');
+
+
+add_filter('nav_menu_css_class' , 'special_nav_class' , 10 , 2);
+
+function special_nav_class ($classes, $item) {
+    if (in_array('current-menu-item', $classes) ){
+        $classes[] = 'active ';
+    }
+    return $classes;
+}
